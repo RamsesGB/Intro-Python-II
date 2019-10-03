@@ -1,5 +1,7 @@
 from room import Room
 
+from player import Player
+
 # Declare all the rooms
 
 room = {
@@ -21,7 +23,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -33,12 +34,15 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
+# Add item to a room example -> room['treasure'].add_items()
+
 # Main
-#
+print("Welcome to PythonLand")
+print("Please choose an option to control your character")
 
+user = int(input("[1]New Adventure    [9]At anytime to quit\n"))
 # Make a new player object that is currently in the 'outside' room.
-
+ramses = Player('Ramses', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,11 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while not user == 9:
+    #Adventure begins
+    if user == 1:
+        print(f"{ramses.name} you find yourself {ramses.current_room.name}")
+        user = int(input("what would you like to do next? [2] Travel North [9]quit\n"))
+
+    elif user == 2:
+        print("what would you like to do next")

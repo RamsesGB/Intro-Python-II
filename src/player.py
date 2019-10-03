@@ -1,11 +1,10 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__(self, name, current_room, items=[]):  # constructor
+    def __init__(self, name, current_room):  # constructor
         self.name = name
         self.current_room = current_room
-        self.items = items
-
+        self.items = []
 
     def add_items(self, item):
         self.items.append(item)
@@ -14,12 +13,7 @@ class Player:
         self.items.remove(item)
 
     def __str__(self):
-        return f"Player: {self.name} has the following items: {self.items}"
+        return f"Player -> {self.name} is in the {self.current_room} and has the following items: {self.items}"
 
     def __repr__(self):
         pass
-
-
-ramses = Player("Ramses", "Laptop")
-
-print(ramses)
