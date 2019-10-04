@@ -8,22 +8,22 @@ class Room:
         self.s_to = s_to
         self.e_to = e_to
         self.w_to = w_to
-        self.items = []
+        self.item = []
 
     def add_items(self, item):
-        self.items.append(item)
+        self.item.append(item)
 
     def items_removed(self, item):
-        self.items.remove(item)
+        self.item.remove(item)
 
     def items_available(self):
-        print(self.items)
+        print(self.item)
 
     def __str__(self):
         pass
         return f"The {self.name} {self.description} it is north to the {self.n_to} " \
                f"south to the {self.s_to} east to the {self.e_to} and west to the {self.w_to} " \
-               f"in it you can find the {self.items}"
+               f"in it you can find the {self.item}"
 
     def __repr__(self):
         pass
