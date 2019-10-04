@@ -44,7 +44,7 @@ user = int(input("[1]New Adventure    [9]At anytime to quit\n"))
 # Make a new player object that is currently in the 'outside' room.
 ramses = Player('Ramses', room['outside'])
 # Write a loop that:
-#
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
@@ -53,11 +53,36 @@ ramses = Player('Ramses', room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+def reset_loop(user, num):
+    temp = num
+    temp2 = user
+    user = temp
+    return user
+
 while not user == 9:
     #Adventure begins
-    if user == 1:
-        print(f"{ramses.name} you find yourself {ramses.current_room.name}")
-        user = int(input("what would you like to do next? [2] Travel North [9]quit\n"))
+    if user == 1: #OUTSIDE
+        ramses.change_room(room['foyer'].s_to)
+        print(f"{ramses.name} you find yourself at the {ramses.current_room.name}, {ramses.current_room.description}")
+        user = int(input("what would you like to do next? [2] Travel North |  [9] Quit\n"))
 
-    elif user == 2:
-        print("what would you like to do next")
+    elif user == 2: #FOYER
+        ramses.change_room(room['outside'].n_to)
+        print(f"{ramses.name} you find yourself at the {ramses.current_room.name}, {ramses.current_room.description}")
+        print(f"You can travel south to the {ramses.current_room.s_to.name}, north to the {ramses.current_room.n_to.name}, or east to the {ramses.current_room.e_to.name}")
+        user = int(input(f"[1] Travel South | [3] Travel North | [4] Travel East | [9] Quit \n"))
+        if user == 3: #OVERLOOK
+            ramses.change_room(room['foyer'].n_to)
+            print(f"{ramses.name} you find yourself at the {ramses.current_room.name}, {ramses.current_room.description}")
+            user = int(input(f"The only exit is to the North [2] Travel North | [9] Quit\n"))
+        elif user == 4: #NARROW
+            ramses.change_room(room['foyer'].e_to)
+            print(f"{ramses.name} you find yourself at the {ramses.current_room.name}, {ramses.current_room.description}")
+            user = int(input("Pursue the smell of gold? or cowardly return West | [5] Travel North | [3] Travel West [9] Quit\n"))
+            if user == 5:#TREASURE
+                ramses.change_room(room['narrow'].n_to)
+                print(f"{ramses.name} you find yourself at the {ramses.current_room.name}, {ramses.current_room.description}")
+                user = int(input(f"The only exit is to the South [4] Travel South | [9] Quit\n"))
+    else:
+        print(f"Invalid selection please try again")
+        user = int(input("You have completed the adventure [9] Go Home"))

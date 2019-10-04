@@ -12,6 +12,9 @@ class Player:
     def drop_items(self, item):
         self.items.remove(item)
 
+    def change_room(self, new_room):
+        self.current_room = new_room
+
     def __str__(self):
         return f"Player -> {self.name} is in the {self.current_room} and has the following items: {self.items}"
 
